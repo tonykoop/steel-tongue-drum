@@ -1,0 +1,742 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Steel Tongue Drum Capstone</title><style>
+body { font-family: Arial, sans-serif; color: #111; line-height: 1.35; max-width: 900px; margin: 32px auto; }
+h1 { font-size: 28px; border-bottom: 2px solid #222; padding-bottom: 6px; }
+h2 { font-size: 22px; margin-top: 28px; }
+h3 { font-size: 18px; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; font-size: 12px; }
+th, td { border: 1px solid #888; padding: 6px; vertical-align: top; }
+th { background: #e8eef8; }
+pre { white-space: pre-wrap; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; }
+.page-break { page-break-before: always; break-before: page; }
+@media print { body { margin: 0.5in; max-width: none; } a { color: #111; } }
+</style></head><body>
+<h1>Steel Tongue Drum Capstone Print Packet</h1>
+
+<p>Generated: 2026-05-08</p>
+<p>Packet folder: `/mnt/c/Users/Tony/Documents/GitHub/steel-tongue-drum`</p>
+
+<h2>File Map</h2>
+
+<table>
+<tr><th>File</th><th>Purpose</th></tr>
+<tr><td>`design.md`</td><td>Project intent, catalog metadata, assumptions, and validation plan.</td></tr>
+<tr><td>`bom.csv`</td><td>Starter bill of materials with part categories, quantities, drawing refs, and notes.</td></tr>
+<tr><td>`sourcing.csv`</td><td>Supplier/search tracker with specs, price/date fields, lead time, substitutes, and risks.</td></tr>
+<tr><td>`cut-list.csv`</td><td>Rough/final stock sizes, material, grain/orientation, operations, yield, and offcuts.</td></tr>
+<tr><td>`drawing-brief.md`</td><td>Manufacturing drawing and technical product sketch brief.</td></tr>
+<tr><td>`assembly-manual.md`</td><td>Shop-facing sequence, tools, fixtures, safety, tuning, finishing, and maintenance notes.</td></tr>
+<tr><td>`validation.csv`</td><td>Target/measured values, tolerance, environment, result, and tuning/build action log.</td></tr>
+<tr><td>`supplier-rfq.md`</td><td>Supplier email/request-for-quote starter.</td></tr>
+<tr><td>`visual-bom-brief.md`</td><td>Art direction for an image-forward visual BOM.</td></tr>
+<tr><td>`wolfram-starter.wl`</td><td>Wolfram starter for physics, optimization, visualization, and validation.</td></tr>
+<tr><td>`README.md`</td><td>Project artifact.</td></tr>
+<tr><td>`family-spec.csv`</td><td>Project artifact.</td></tr>
+<tr><td>`jig-decision.md`</td><td>Project artifact.</td></tr>
+<tr><td>`photo-shotlist.md`</td><td>Project artifact.</td></tr>
+<tr><td>`resources.md`</td><td>Project artifact.</td></tr>
+<tr><td>`risks.md`</td><td>Project artifact.</td></tr>
+<tr><td>`validation-report.md`</td><td>Project artifact.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>design.md</h2>
+
+<p>Project intent, catalog metadata, assumptions, and validation plan.</p>
+
+<h1>Steel Tongue Drum Design</h1>
+
+<p>Generated: 2026-05-08</p>
+
+<h2>Intent</h2>
+
+<p>Create a traceable root-mode packet for a tuned steel tongue drum. The packet documents the first-pass geometry from `steel-tongue-drum-design-table.xlsx`, the manufacturing assumptions that can move pitch, and the validation workflow needed to turn estimates into a tuned instrument.</p>
+
+<p>This design is intentionally conservative about claims. The workbook formulas size tongues from a cantilever model, but the final instrument must be tuned by measured cutting and strike tests.</p>
+
+<h2>Source Artifacts</h2>
+
+<table>
+<tr><th>Source</th><th>Role</th><th>Status</th></tr>
+<tr><td>`steel-tongue-drum-design-table.xlsx`</td><td>Design table and first-pass geometry</td><td>Present</td></tr>
+<tr><td>`README.md`</td><td>Root repo overview</td><td>Expanded in this packet</td></tr>
+<tr><td>`instrument-maker-v4` references</td><td>Physics, sourcing, print packet, validator</td><td>Applied</td></tr>
+<tr><td>Measured prototype data</td><td>Required for final tuning confidence</td><td>Not present</td></tr>
+</table>
+
+<h2>Workbook Inputs Used</h2>
+
+<table>
+<tr><th>Parameter</th><th>Value</th><th>Unit</th><th>Source / confidence</th></tr>
+<tr><td>Shell outside diameter</td><td>12.000</td><td>in</td><td>workbook input, assumption</td></tr>
+<tr><td>Shell height</td><td>6.000</td><td>in</td><td>workbook input, assumption</td></tr>
+<tr><td>Steel thickness</td><td>0.079</td><td>in</td><td>workbook input, verify with calipers</td></tr>
+<tr><td>Kerf width</td><td>0.040</td><td>in</td><td>workbook input, process-dependent</td></tr>
+<tr><td>Tongue count</td><td>11</td><td>count</td><td>workbook note rows include bass row plus 10 numbered rows</td></tr>
+<tr><td>Tongue width</td><td>1.000</td><td>in</td><td>workbook input, derived estimate</td></tr>
+<tr><td>Port diameter</td><td>2.500</td><td>in</td><td>workbook input, derived estimate</td></tr>
+<tr><td>Tuning standard</td><td>440</td><td>Hz</td><td>A4 reference</td></tr>
+<tr><td>Selected K constant</td><td>32098</td><td>imperial</td><td>workbook steel table, first-pass only</td></tr>
+</table>
+
+<h2>Governing Model</h2>
+
+<p>Use the cantilever beam model only as an initial layout estimate:</p>
+
+<pre><code>
+f = K_steel * t / L^2
+L = sqrt(K_steel * t / f)
+</code></pre>
+
+<p>Where:</p>
+
+<ul>
+<li>`f` is target frequency in Hz.</li>
+<li>`K_steel` is the workbook steel constant, currently 32098 for the selected steel row.</li>
+<li>`t` is steel thickness in inches.</li>
+<li>`L` is free tongue length in inches.</li>
+</ul>
+
+<p>The model assumes an ideal fixed-free tongue. A real steel tongue drum departs from that ideal because the tongue remains part of a stressed plate/shell, is cut by a finite kerf, may be heat affected, may retain burrs, and is coupled to the vessel body and support system.</p>
+
+<h2>Target Tongue Table</h2>
+
+<p>The values below are first-pass estimates from the workbook formula family. Treat every length as a starting cut length with trim allowance, not a final tuned dimension.</p>
+
+<table>
+<tr><th>Tongue</th><th>MIDI</th><th>Note</th><th>Target Hz</th><th>Derived length in</th><th>Derived length mm</th><th>Status</th></tr>
+<tr><td>Bass</td><td>50</td><td>D3</td><td>146.83</td><td>4.16</td><td>105.6</td><td>derived estimate</td></tr>
+<tr><td>1</td><td>57</td><td>A3</td><td>220.00</td><td>3.39</td><td>86.2</td><td>derived estimate</td></tr>
+<tr><td>2</td><td>58</td><td>A#3/Bb3</td><td>233.08</td><td>3.30</td><td>83.7</td><td>derived estimate</td></tr>
+<tr><td>3</td><td>60</td><td>C4</td><td>261.63</td><td>3.11</td><td>79.0</td><td>derived estimate</td></tr>
+<tr><td>4</td><td>62</td><td>D4</td><td>293.66</td><td>2.94</td><td>74.6</td><td>derived estimate</td></tr>
+<tr><td>5</td><td>64</td><td>E4</td><td>329.63</td><td>2.77</td><td>70.4</td><td>derived estimate</td></tr>
+<tr><td>6</td><td>65</td><td>F4</td><td>349.23</td><td>2.69</td><td>68.4</td><td>derived estimate</td></tr>
+<tr><td>7</td><td>67</td><td>G4</td><td>392.00</td><td>2.54</td><td>64.5</td><td>derived estimate</td></tr>
+<tr><td>8</td><td>69</td><td>A4</td><td>440.00</td><td>2.40</td><td>60.9</td><td>derived estimate</td></tr>
+<tr><td>9</td><td>72</td><td>C5</td><td>523.25</td><td>2.20</td><td>55.9</td><td>derived estimate</td></tr>
+<tr><td>10</td><td>74</td><td>D5</td><td>587.33</td><td>2.08</td><td>52.8</td><td>derived estimate</td></tr>
+</table>
+
+<h2>Shell / Helmholtz Estimate</h2>
+
+<p>The workbook includes a first-pass vessel estimate using a 12 in diameter, 6 in high partial volume assumption and a 2.5 in port. This is useful for checking whether the shell may reinforce or color the tongue field, but it should not be treated as a final resonator design.</p>
+
+<p>For this packet, the shell resonance is documented as a support variable:</p>
+
+<ul>
+<li>Verify actual internal volume after forming, welding, or purchased shell selection.</li>
+<li>Measure the port diameter after deburring and finish.</li>
+<li>Compare struck tongue spectra mounted and unmounted.</li>
+<li>Record whether final mounting shifts pitch or sustain.</li>
+</ul>
+
+<h2>Empirical Tuning Workflow</h2>
+
+<p>1. Rough-cut the tongues long or conservative, with rounded stress-relief termini.</p>
+<p>2. Deburr both sides without thinning the root unpredictably.</p>
+<p>3. Strike each tongue with the same mallet and support condition.</p>
+<p>4. Log measured Hz and cents error in `validation.csv`.</p>
+<p>5. Remove material in controlled passes, favoring tip/length correction first.</p>
+<p>6. Re-measure after each tuning pass and after final mounting.</p>
+<p>7. Re-check drift after finish cure and 24-72 hours of rest.</p>
+
+<h2>Manufacturing Assumptions</h2>
+
+<ul>
+<li>Steel grade is not locked. Mild low-carbon sheet is the default planning case; stainless is acceptable only after revisiting K, cutting method, corrosion plan, and work hardening behavior.</li>
+<li>Thickness must be measured at the actual blank, not assumed from nominal sheet gauge.</li>
+<li>Laser cutting is fast but risks heat affected zones and local stress changes.</li>
+<li>Waterjet cutting reduces heat risk but can leave taper, abrasive edge texture, and local burrs.</li>
+<li>CNC milling can control slot geometry but needs serious fixturing and coolant/chip planning on thin steel.</li>
+<li>Every inside slot end needs a smooth radius to reduce crack initiation.</li>
+</ul>
+
+<h2>Unresolved Tuning Assumptions</h2>
+
+<ul>
+<li>Actual steel grade, modulus, density, hardness, and residual stress.</li>
+<li>Actual kerf after the chosen cutting process.</li>
+<li>Whether the blank is flat sheet, preformed shell, salvaged vessel, or welded assembly.</li>
+<li>Final support/isolation scheme.</li>
+<li>Mallet hardness and strike point standard.</li>
+<li>Finish mass and corrosion-protection method.</li>
+<li>Whether the bass tongue and high tongues remain balanced in volume and sustain after final trimming.</li>
+</ul>
+
+<h2>Acceptance Criteria</h2>
+
+<p>The packet becomes public-review ready only after:</p>
+
+<ul>
+<li>Each tongue has target Hz, measured Hz, cents error, mallet condition, support condition, and environment logged.</li>
+<li>Rough-cut, deburr, first strike, tuning pass, final mount, and drift check rows are complete.</li>
+<li>At least one process note records actual kerf, burr condition, and heat/warp observations.</li>
+<li>`validation-report.md` is updated from measured data rather than assumptions.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>bom.csv</h2>
+
+<p>Starter bill of materials with part categories, quantities, drawing refs, and notes.</p>
+
+<table>
+<tr><th>item_id</th><th>part_name</th><th>qty</th><th>unit</th><th>required_spec</th><th>estimated_cost</th><th>cost_basis</th><th>critical_to_tuning</th><th>notes</th></tr>
+<tr><td>BOM-001</td><td>Steel shell or formed blank</td><td>1</td><td>each</td><td>12 in diameter by 6 in high steel vessel or equivalent blank; thickness near 0.079 in; low-carbon steel preferred for first prototype</td><td>60</td><td>rough planning estimate; verify before purchase</td><td>yes</td><td>Actual grade and thickness drive the first-pass K assumption.</td></tr>
+<tr><td>BOM-002</td><td>Top tongue field blank</td><td>1</td><td>each</td><td>Integral shell top or welded steel top compatible with 0.079 in tongue field</td><td>35</td><td>rough planning estimate; verify before purchase</td><td>yes</td><td>Avoid unknown hardened or heavily stressed salvage until measured.</td></tr>
+<tr><td>BOM-003</td><td>Rubber isolation feet</td><td>3</td><td>set</td><td>Low-profile rubber feet or grommet supports; non-rattling; mechanically isolated from tongues</td><td>8</td><td>rough planning estimate; verify before purchase</td><td>yes</td><td>Mounting can shift pitch and sustain.</td></tr>
+<tr><td>BOM-004</td><td>Mallet pair</td><td>1</td><td>pair</td><td>Medium-soft rubber or yarn-wrapped mallets; repeatable hardness for validation</td><td>15</td><td>rough planning estimate; verify before purchase</td><td>yes</td><td>Mallet hardness must be recorded in validation.</td></tr>
+<tr><td>BOM-005</td><td>Edge trim or rim protection</td><td>1</td><td>length</td><td>Non-rattling edge trim compatible with finish and hand contact</td><td>12</td><td>rough planning estimate; verify before purchase</td><td>no</td><td>Avoid added mass near tongues unless measured after install.</td></tr>
+<tr><td>BOM-006</td><td>Finish system</td><td>1</td><td>set</td><td>Corrosion-resistant finish or oil/wax compatible with struck instrument use</td><td>18</td><td>rough planning estimate; verify before purchase</td><td>yes</td><td>Finish mass and cure can move pitch.</td></tr>
+<tr><td>BOM-007</td><td>Abrasives and deburring tools</td><td>1</td><td>set</td><td>Files, deburring wheel, abrasive pad, fine abrasive sheets</td><td>20</td><td>rough planning estimate; verify before purchase</td><td>yes</td><td>Deburr must smooth without uncontrolled thinning.</td></tr>
+<tr><td>BOM-008</td><td>Tuning measurement tools</td><td>1</td><td>set</td><td>Chromatic tuner or spectrum app, microphone, calipers, notebook</td><td>0</td><td>shop-owned or verify before purchase</td><td>yes</td><td>Required for public-review readiness.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>sourcing.csv</h2>
+
+<p>Supplier/search tracker with specs, price/date fields, lead time, substitutes, and risks.</p>
+
+<table>
+<tr><th>item_id</th><th>part_name</th><th>required_spec</th><th>search_terms</th><th>candidate_sources</th><th>date_checked</th><th>unit_price</th><th>lead_time</th><th>substitution_policy</th><th>sourcing_risk</th></tr>
+<tr><td>SRC-001</td><td>Low-carbon steel shell</td><td>12 in diameter by about 6 in high; thickness close to 0.079 in; weldable low-carbon steel</td><td>12 inch steel hemisphere shell 14 gauge low carbon steel vessel blank</td><td>metal supplier, fabrication shop, online metal spinner</td><td>not checked</td><td>verify before purchase</td><td>verify before purchase</td><td>Substitute only after recalculating and measuring thickness</td><td>Unknown grade or forming stress changes tuning.</td></tr>
+<tr><td>SRC-002</td><td>Steel sheet/top blank</td><td>Flat or formed steel compatible with tongue cutting and shell attachment</td><td>14 gauge mild steel sheet 0.075 0.080 low carbon</td><td>local metal supplier, OnlineMetals, McMaster search</td><td>not checked</td><td>verify before purchase</td><td>verify before purchase</td><td>Accept nearby gauge only with measured thickness update</td><td>Nominal gauge may differ from actual thickness.</td></tr>
+<tr><td>SRC-003</td><td>Cutting service</td><td>Laser, waterjet, or CNC service that can hold slot geometry and document kerf</td><td>waterjet steel tongue drum blank laser cutting mild steel 14 gauge</td><td>local waterjet shop, laser cutting shop, makerspace metal shop</td><td>not checked</td><td>quote required</td><td>quote required</td><td>Prefer waterjet when heat warp is unacceptable</td><td>Laser HAZ and waterjet taper both affect pitch.</td></tr>
+<tr><td>SRC-004</td><td>Rubber isolation feet</td><td>Soft non-rattling feet with screws or adhesive backing</td><td>rubber bumper feet instrument isolation grommet</td><td>hardware store, McMaster, Amazon search</td><td>not checked</td><td>verify before purchase</td><td>verify before purchase</td><td>Any equivalent that does not rattle</td><td>Mount stiffness affects sustain and pitch.</td></tr>
+<tr><td>SRC-005</td><td>Mallets</td><td>Medium-soft repeatable mallet pair</td><td>steel tongue drum mallets rubber yarn medium soft</td><td>music supplier, percussion supplier</td><td>not checked</td><td>verify before purchase</td><td>verify before purchase</td><td>Substitute only if hardness is logged</td><td>Hard mallets emphasize partials and can confuse tuner readings.</td></tr>
+<tr><td>SRC-006</td><td>Finish</td><td>Low-build corrosion protection compatible with hand contact</td><td>clear lacquer steel instrument finish paste wax corrosion protection</td><td>hardware store, finishing supplier</td><td>not checked</td><td>verify before purchase</td><td>verify before purchase</td><td>Avoid thick coatings until measured</td><td>Finish adds mass and can damp tongues.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>cut-list.csv</h2>
+
+<p>Rough/final stock sizes, material, grain/orientation, operations, yield, and offcuts.</p>
+
+<table>
+<tr><th>cut_id</th><th>part_name</th><th>qty</th><th>material</th><th>rough_dimensions_in</th><th>final_dimensions_in</th><th>operation</th><th>datum</th><th>kerf_allowance_in</th><th>inspection</th></tr>
+<tr><td>CUT-001</td><td>Shell blank</td><td>1</td><td>low-carbon steel</td><td>12.5 dia x 6.25 high planning envelope</td><td>12.0 dia x 6.0 high target</td><td>source/form/trim shell</td><td>centerline and rim plane</td><td>0.040</td><td>Confirm roundness, thickness, and no oil-can flex.</td></tr>
+<tr><td>CUT-002</td><td>Port opening</td><td>1</td><td>same shell</td><td>pilot hole plus trim margin</td><td>2.5 dia port</td><td>cut/deburr port</td><td>shell centerline</td><td>0.040</td><td>Measure actual diameter and edge smoothness.</td></tr>
+<tr><td>CUT-003</td><td>Bass tongue slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 4.16 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Leave trim allowance; log first-strike Hz.</td></tr>
+<tr><td>CUT-004</td><td>Tongue 1 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 3.39 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Deburr before first measured strike.</td></tr>
+<tr><td>CUT-005</td><td>Tongue 2 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 3.30 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Check kerf and root radius.</td></tr>
+<tr><td>CUT-006</td><td>Tongue 3 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 3.11 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Check for heat warp before tuning.</td></tr>
+<tr><td>CUT-007</td><td>Tongue 4 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 2.94 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Measure Hz before material removal.</td></tr>
+<tr><td>CUT-008</td><td>Tongue 5 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 2.77 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Tune in small passes.</td></tr>
+<tr><td>CUT-009</td><td>Tongue 6 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 2.69 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Watch for burr mass and damping.</td></tr>
+<tr><td>CUT-010</td><td>Tongue 7 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 2.54 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Check sustain versus adjacent tongues.</td></tr>
+<tr><td>CUT-011</td><td>Tongue 8 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 2.40 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>A4 formula sanity row.</td></tr>
+<tr><td>CUT-012</td><td>Tongue 9 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 2.20 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>High tongues may be quiet; verify volume.</td></tr>
+<tr><td>CUT-013</td><td>Tongue 10 slot</td><td>1</td><td>0.079 in steel top</td><td>layout from 2.08 in tongue length plus stress radius</td><td>derived estimate; tune by measurement</td><td>rough-cut slot</td><td>top centerline</td><td>0.040</td><td>Avoid over-thinning short tongue roots.</td></tr>
+<tr><td>CUT-014</td><td>Fixture ring or cradle</td><td>1</td><td>MDF plywood or printed fixture</td><td>14 x 14 x 0.75 planning blank</td><td>cradle fits shell without rocking</td><td>cut jig</td><td>rim plane</td><td>0.000</td><td>Must hold shell without damping tongue field.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>drawing-brief.md</h2>
+
+<p>Manufacturing drawing and technical product sketch brief.</p>
+
+<h1>Drawing Brief</h1>
+
+<h2>Required Drawing Set</h2>
+
+<p>1. Top layout with all tongue slots, centerline, port, rim, and orientation mark.</p>
+<p>2. Section view through shell showing top thickness, shell height, port, support feet, and rim/edge treatment.</p>
+<p>3. Detail view of a tongue root with slot-end radius, kerf, burr limit, and stress-relief note.</p>
+<p>4. Fixture view showing temporary tuning support and final isolation feet.</p>
+<p>5. Process coupon drawing for kerf and HAZ validation.</p>
+
+<h2>Critical Dimensions</h2>
+
+<ul>
+<li>12.0 in body diameter assumption.</li>
+<li>6.0 in shell height assumption.</li>
+<li>0.079 in steel thickness assumption.</li>
+<li>0.040 in kerf assumption.</li>
+<li>1.0 in tongue width assumption.</li>
+<li>2.5 in port diameter assumption.</li>
+<li>Tongue lengths from `design.md` are derived estimates and must be marked &quot;rough-cut; tune by measurement.&quot;</li>
+</ul>
+
+<h2>Drawing Rules</h2>
+
+<ul>
+<li>Units: inches with metric equivalents where useful.</li>
+<li>Include title block, revision, date, material, finish, and &quot;not final tuned dimensions&quot; note.</li>
+<li>Show datum A as top center, datum B as rim plane, datum C as orientation line.</li>
+<li>Call out all inside slot ends as smooth radiused transitions.</li>
+<li>Do not publish as final manufacturing drawing until validation data exists.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>assembly-manual.md</h2>
+
+<p>Shop-facing sequence, tools, fixtures, safety, tuning, finishing, and maintenance notes.</p>
+
+<h1>Assembly Manual</h1>
+
+<h2>Safety</h2>
+
+<p>Steel cutting, deburring, and tuning can create sharp edges, hot work, abrasive dust, and springy tongues. Wear eye protection, gloves when handling raw cuts, and hearing protection during cutting or repeated striking. Do not strike an unfinished blank with sharp burrs in a way that can throw chips.</p>
+
+<h2>Tools</h2>
+
+<ul>
+<li>Calipers and steel rule.</li>
+<li>Layout template or CAD print.</li>
+<li>Cutting process: waterjet, laser, CNC mill, or carefully controlled manual process.</li>
+<li>Deburring tools, small files, abrasive pads, and inspection light.</li>
+<li>Tuner or spectrum analyzer with repeatable microphone placement.</li>
+<li>Medium-soft mallets reserved for validation.</li>
+<li>Temporary support cradle and final isolation feet.</li>
+</ul>
+
+<h2>Build Sequence</h2>
+
+<p>1. Confirm the actual steel grade, thickness, shell diameter, shell height, and port diameter.</p>
+<p>2. Update the workbook or `design.md` assumptions if measured thickness differs from 0.079 in.</p>
+<p>3. Mark the top centerline, tongue layout, port, and any logo or orientation mark.</p>
+<p>4. Cut the port first if it helps workholding; deburr and record actual diameter.</p>
+<p>5. Rough-cut tongue slots using rounded slot ends and the documented kerf.</p>
+<p>6. Inspect for heat discoloration, slot taper, burrs, and oil-can distortion.</p>
+<p>7. Deburr both sides, preserving root radius and avoiding uncontrolled thinning.</p>
+<p>8. Place the drum on a temporary isolation support and record first-strike measurements.</p>
+<p>9. Tune iteratively, one tongue at a time, recording measured Hz and cents error.</p>
+<p>10. Install final feet, edge trim, and finish only after pre-finish tuning is documented.</p>
+<p>11. Re-check pitch after final mounting, after finish cure, and after a 24-72 hour drift rest.</p>
+
+<h2>Tuning Notes</h2>
+
+<p>For this first prototype, do not chase a perfect tuner reading from one strike. Use the same mallet, strike point, support, and microphone distance. Record at least three stable readings per tongue where possible.</p>
+
+<p>If a tongue is sharp after rough cutting, lower pitch by increasing effective length or removing material in a way that reduces stiffness. If a tongue is flat, options are limited; shorten the effective tongue or accept a revised target. This is why rough-cut length should stay conservative.</p>
+
+<h2>Photo Checkpoints</h2>
+
+<ul>
+<li>Raw shell and thickness measurement.</li>
+<li>Layout before cutting.</li>
+<li>Slot kerf sample coupon.</li>
+<li>Rough-cut top before deburr.</li>
+<li>Deburred tongue roots.</li>
+<li>First-strike measurement setup.</li>
+<li>Tuning pass with tool marks visible.</li>
+<li>Final mount and underside/support detail.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>validation.csv</h2>
+
+<p>Target/measured values, tolerance, environment, result, and tuning/build action log.</p>
+
+<table>
+<tr><th>check_id</th><th>phase</th><th>tongue_or_feature</th><th>target_note</th><th>target_hz</th><th>measured_hz</th><th>cents_error</th><th>tolerance</th><th>environment</th><th>support_condition</th><th>mallet</th><th>process_state</th><th>result</th><th>action_notes</th></tr>
+<tr><td>VAL-001</td><td>formula sanity</td><td>A4</td><td>A4</td><td>440.00</td><td></td><td></td><td>0 cents</td><td>shop temp logged at test</td><td>free support and final mount</td><td>validation mallet</td><td>pre-build</td><td>open</td><td>Confirm target formula returns A4 = 440 Hz.</td></tr>
+<tr><td>VAL-002</td><td>rough-cut</td><td>bass</td><td>D3</td><td>146.83</td><td></td><td></td><td>record only</td><td>log temp/humidity</td><td>rough support</td><td>medium-soft</td><td>after slot cutting</td><td>open</td><td>Measure before deburr if safe; note cutter, kerf, HAZ, and warp.</td></tr>
+<tr><td>VAL-003</td><td>rough-cut</td><td>tongue 1</td><td>A3</td><td>220.00</td><td></td><td></td><td>record only</td><td>log temp/humidity</td><td>rough support</td><td>medium-soft</td><td>after slot cutting</td><td>open</td><td>Do not tune until burrs are controlled.</td></tr>
+<tr><td>VAL-004</td><td>deburr</td><td>all tongues</td><td>n/a</td><td></td><td></td><td></td><td>no sharp burrs; no uncontrolled thinning</td><td>shop</td><td>rough support</td><td>n/a</td><td>after deburr</td><td>open</td><td>Inspect both sides and root radius; photograph burr condition.</td></tr>
+<tr><td>VAL-005</td><td>first strike</td><td>bass</td><td>D3</td><td>146.83</td><td></td><td></td><td>plus/minus 50 cents initial</td><td>log temp/humidity</td><td>consistent temporary isolation</td><td>medium-soft</td><td>deburr complete</td><td>open</td><td>Record first stable tuner reading and spectrum if available.</td></tr>
+<tr><td>VAL-006</td><td>first strike</td><td>tongue 1</td><td>A3</td><td>220.00</td><td></td><td></td><td>plus/minus 50 cents initial</td><td>log temp/humidity</td><td>consistent temporary isolation</td><td>medium-soft</td><td>deburr complete</td><td>open</td><td>Repeat for every tongue before material removal.</td></tr>
+<tr><td>VAL-007</td><td>tuning pass</td><td>all tongues</td><td>scale targets</td><td></td><td></td><td></td><td>final target plus/minus 10 cents before mount</td><td>log temp/humidity</td><td>consistent temporary isolation</td><td>medium-soft</td><td>incremental trim</td><td>open</td><td>Log every trim pass and whether pitch rose or fell.</td></tr>
+<tr><td>VAL-008</td><td>final mount</td><td>all tongues</td><td>scale targets</td><td></td><td></td><td></td><td>plus/minus 10 cents after mount</td><td>log temp/humidity</td><td>final feet/cradle</td><td>medium-soft</td><td>mounted</td><td>open</td><td>Compare mounted readings to temporary support readings.</td></tr>
+<tr><td>VAL-009</td><td>finish check</td><td>all tongues</td><td>scale targets</td><td></td><td></td><td></td><td>plus/minus 10 cents after finish cure</td><td>log temp/humidity</td><td>final feet/cradle</td><td>medium-soft</td><td>finish cured</td><td>open</td><td>Check damping and pitch shift after finish.</td></tr>
+<tr><td>VAL-010</td><td>drift check</td><td>all tongues</td><td>scale targets</td><td></td><td></td><td></td><td>plus/minus 10 cents after 24-72 h rest</td><td>log temp/humidity</td><td>final feet/cradle</td><td>medium-soft</td><td>rested</td><td>open</td><td>Public-review gate: update validation-report.md from measured data.</td></tr>
+<tr><td>VAL-011</td><td>structural check</td><td>slot roots</td><td>n/a</td><td></td><td></td><td></td><td>no visible cracks after tuning</td><td>shop</td><td>final support</td><td>n/a</td><td>post tuning</td><td>open</td><td>Inspect root radii under bright light.</td></tr>
+<tr><td>VAL-012</td><td>ergonomic check</td><td>playing surface</td><td>n/a</td><td></td><td></td><td></td><td>comfortable reach; no sharp edges</td><td>shop</td><td>final support</td><td>medium-soft</td><td>post assembly</td><td>open</td><td>Confirm player can strike all tongues without contacting sharp rim.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>supplier-rfq.md</h2>
+
+<p>Supplier email/request-for-quote starter.</p>
+
+<h1>Supplier RFQ Draft</h1>
+
+<p>Subject: RFQ - steel tongue drum blank / cutting service</p>
+
+<p>Hello,</p>
+
+<p>I am preparing a prototype steel tongue drum and need either a steel shell/blank, cutting service, or both. The project is a struck musical instrument, so material consistency, low warp, clean edges, and documented kerf matter more than cosmetic speed.</p>
+
+<h2>Requested Quote</h2>
+
+<ul>
+<li>Quantity: 1 prototype, with option for 2-3 follow-up blanks.</li>
+<li>Material: low-carbon mild steel preferred for the first prototype.</li>
+<li>Thickness target: near 0.079 in; please quote actual available thickness and tolerance.</li>
+<li>Body target: 12 in diameter, 6 in high shell/vessel or compatible top/shell blank.</li>
+<li>Cutting: tongue slots and 2.5 in port from supplied DXF/SVG when finalized.</li>
+<li>Edge condition: quote as-cut condition, deburring options, and expected kerf/taper.</li>
+<li>Process options: waterjet, fiber laser, CO2 laser, CNC mill, or recommended alternative.</li>
+</ul>
+
+<h2>Please Include</h2>
+
+<ul>
+<li>Material grade and data sheet.</li>
+<li>Actual thickness tolerance.</li>
+<li>Cutting kerf estimate.</li>
+<li>Heat affected zone or warp expectations.</li>
+<li>Deburring/edge-finishing options.</li>
+<li>Unit price and lead time.</li>
+<li>Whether nested test coupons can be included for kerf and tuning trials.</li>
+</ul>
+
+<p>Substitutions are acceptable only if the grade, thickness, cutting process, and expected edge condition are clearly identified.</p>
+
+<div class="page-break"></div>
+
+<h2>visual-bom-brief.md</h2>
+
+<p>Art direction for an image-forward visual BOM.</p>
+
+<h1>Visual BOM Brief</h1>
+
+<h2>Goal</h2>
+
+<p>Create a one-page visual BOM that lets a fabricator or reviewer understand the steel tongue drum parts without reading every CSV.</p>
+
+<h2>Layout</h2>
+
+<ul>
+<li>Header: Steel Tongue Drum, STD-001, quote date, estimated total.</li>
+<li>Main image: top layout drawing from `drawings/steel-tongue-drum-layout.svg`.</li>
+<li>Row images: shell blank, tongue field, port, rubber feet, mallets, finish, deburring tools.</li>
+<li>Columns: item id, part, visual, quantity, required spec, cost basis, tuning risk.</li>
+</ul>
+
+<h2>Required Labels</h2>
+
+<ul>
+<li>&quot;Derived estimate&quot; for any tongue geometry.</li>
+<li>&quot;Verify before purchase&quot; for price and supplier information.</li>
+<li>&quot;Measured data required&quot; near tuning-critical parts.</li>
+</ul>
+
+<h2>Shot Priority</h2>
+
+<p>Until real photos exist, use clean line drawings and explicit placeholders. Do not use atmospheric concept images as proof of manufactured geometry.</p>
+
+<div class="page-break"></div>
+
+<h2>wolfram-starter.wl</h2>
+
+<p>Wolfram starter for physics, optimization, visualization, and validation.</p>
+
+<pre><code>
+(* Steel Tongue Drum Wolfram starter *)
+
+ClearAll[&quot;Global`*&quot;];
+
+(* Inputs from steel-tongue-drum-design-table.xlsx *)
+bodyDiameterIn = 12.0;
+shellHeightIn = 6.0;
+steelThicknessIn = 0.079;
+kerfIn = 0.040;
+tongueWidthIn = 1.0;
+portDiameterIn = 2.5;
+a4Hz = 440.0;
+kSteel = 32098.0;
+
+targetMidis = &lt;|
+  &quot;Bass&quot; -&gt; 50,
+  &quot;T1&quot; -&gt; 57,
+  &quot;T2&quot; -&gt; 58,
+  &quot;T3&quot; -&gt; 60,
+  &quot;T4&quot; -&gt; 62,
+  &quot;T5&quot; -&gt; 64,
+  &quot;T6&quot; -&gt; 65,
+  &quot;T7&quot; -&gt; 67,
+  &quot;T8&quot; -&gt; 69,
+  &quot;T9&quot; -&gt; 72,
+  &quot;T10&quot; -&gt; 74
+|&gt;;
+
+midiToHz[m_] := a4Hz*2^((m - 69)/12);
+tongueLengthIn[f_] := Sqrt[kSteel*steelThicknessIn/f];
+centsError[measured_, target_] := 1200*Log2[measured/target];
+
+targetTable = KeyValueMap[
+  {#1, #2, midiToHz[#2], tongueLengthIn[midiToHz[#2]], 25.4*tongueLengthIn[midiToHz[#2]]} &amp;,
+  targetMidis
+];
+
+Grid[
+  Prepend[targetTable, {&quot;Tongue&quot;, &quot;MIDI&quot;, &quot;Target Hz&quot;, &quot;Length in&quot;, &quot;Length mm&quot;}],
+  Frame -&gt; All
+]
+
+(* Validation example: replace with measured data from validation.csv. *)
+measuredExampleHz = &lt;|&quot;T8&quot; -&gt; 440.0|&gt;;
+KeyValueMap[{#1, centsError[#2, midiToHz[targetMidis[#1]]]} &amp;, measuredExampleHz]
+
+(* Simple sensitivity plot: pitch versus tongue length for the selected steel thickness. *)
+Plot[kSteel*steelThicknessIn/l^2, {l, 2.0, 4.5},
+  AxesLabel -&gt; {&quot;Tongue length (in)&quot;, &quot;Frequency (Hz)&quot;},
+  PlotLabel -&gt; &quot;First-pass cantilever estimate only&quot;
+]
+</code></pre>
+
+<div class="page-break"></div>
+
+<h2>README.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Steel Tongue Drum</h1>
+
+<p>Root-mode engineering packet for a tuned steel tongue drum: a slit-tongue steel idiophone whose final tuning must be measured and corrected on the actual prototype.</p>
+
+<p>This repo is part of the [tonykoop/instrument-maker](https://github.com/tonykoop/instrument-maker) catalogue and uses the `instrument-maker-v4` root packet shape.</p>
+
+<h2>What this is</h2>
+
+<p>This packet turns the existing `steel-tongue-drum-design-table.xlsx` into a build-ready documentation set for a circular steel tongue drum. The workbook provides first-pass geometry, material constants, target MIDI notes, a rough Helmholtz body estimate, and tongue length formulas.</p>
+
+<p>The important caveat: steel tongue drums are empirical instruments. The cantilever equation is useful for rough layout, but final pitch depends on steel batch, residual stress, slot kerf, heat affected zone, burrs, mounting isolation, mallet hardness, finish mass, and the way each tongue is trimmed. This repo is therefore not &quot;tuned&quot; until measured prototype data exists in `validation.csv`.</p>
+
+<h2>Current design baseline</h2>
+
+<table>
+<tr><th>Item</th><th>Baseline</th></tr>
+<tr><td>Body form</td><td>Round steel shell / vessel</td></tr>
+<tr><td>Outside diameter</td><td>12 in assumption from workbook</td></tr>
+<tr><td>Shell height</td><td>6 in assumption from workbook</td></tr>
+<tr><td>Steel thickness</td><td>0.079 in derived from workbook input</td></tr>
+<tr><td>Slot kerf</td><td>0.040 in workbook assumption</td></tr>
+<tr><td>Tongue width</td><td>1.0 in workbook assumption</td></tr>
+<tr><td>Port diameter</td><td>2.5 in workbook assumption</td></tr>
+<tr><td>Tuning reference</td><td>A4 = 440 Hz</td></tr>
+<tr><td>Governing model</td><td>`f = K_steel * t / L^2`, first-pass only</td></tr>
+<tr><td>Validation state</td><td>No measured prototype data yet</td></tr>
+</table>
+
+<h2>Packet map</h2>
+
+<ul>
+<li>`design.md` - design intent, assumptions, formulas, tuning workflow.</li>
+<li>`family-spec.csv` - root-mode family row for the current steel tongue drum.</li>
+<li>`bom.csv`, `sourcing.csv`, `cut-list.csv` - purchasing and shop prep.</li>
+<li>`assembly-manual.md` - rough build, cutting, tuning, finish, and mount steps.</li>
+<li>`validation.csv` - tuning and process validation rows, including rough-cut, deburr, first strike, tuning pass, final mount, and drift check.</li>
+<li>`drawing-brief.md`, `drawings/` - drawing requirements and starter layout SVG.</li>
+<li>`cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs.</li>
+<li>`risks.md` - acoustic, structural, ergonomic, supply, and finish risks with tests.</li>
+<li>`capstone-deck.md`, `print-packet.md`, `print-packet.html`, `site/index.html` - review and presentation layers.</li>
+</ul>
+
+<h2>Readiness</h2>
+
+<p>This packet is private-prototype ready. It should stay private for public technical review until a rough-cut prototype is struck, tuned, mounted, drift-checked, and logged with measured Hz and cents error.</p>
+
+<h2>License</h2>
+
+<p>[CC BY 4.0](LICENSE) - see LICENSE for details.</p>
+
+<div class="page-break"></div>
+
+<h2>family-spec.csv</h2>
+
+<p>Project artifact.</p>
+
+<table>
+<tr><th>family_id</th><th>member_id</th><th>instrument_name</th><th>variant</th><th>key_or_scale</th><th>body_diameter_in</th><th>shell_height_in</th><th>steel_thickness_in</th><th>tongue_count</th><th>port_diameter_in</th><th>design_stage</th><th>validation_state</th><th>notes</th></tr>
+<tr><td>STD-FAM-001</td><td>STD-001</td><td>Steel Tongue Drum</td><td>12 inch root prototype</td><td>D-centered mixed pentatonic/diatonic study</td><td>12.0</td><td>6.0</td><td>0.079</td><td>11</td><td>2.5</td><td>root-mode packet</td><td>no measured prototype data</td><td>Derived from steel-tongue-drum-design-table.xlsx; final tuning empirical.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>jig-decision.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Jig Decision</h1>
+
+<h2>Decision</h2>
+
+<p>Use a two-stage jig approach:</p>
+
+<p>1. A non-marring temporary tuning cradle that supports the shell consistently while leaving the tongue field free.</p>
+<p>2. A final isolation-foot layout that is re-measured after installation.</p>
+
+<h2>Why</h2>
+
+<p>The support condition is part of the instrument. A rigid clamp, bench pad, hand hold, rubber foot, and display stand can all change damping and perceived pitch. Separating the temporary tuning cradle from the final mount makes that shift visible in `validation.csv`.</p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li>Cradle must locate the shell repeatably without contacting vibrating tongues.</li>
+<li>Contact points should be soft enough to prevent rattles but stable enough for repeatable measurements.</li>
+<li>Fixture should expose the port and underside for inspection.</li>
+<li>Final feet must be installed before the final-mount validation phase.</li>
+</ul>
+
+<h2>Rejected Options</h2>
+
+<ul>
+<li>Freehand holding during tuning: too variable.</li>
+<li>Clamping the shell rigidly to a bench: likely to damp shell modes.</li>
+<li>Tuning only after final finish: hides process causes and makes correction harder.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>photo-shotlist.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Photo Shotlist</h1>
+
+<ul>
+<li>Raw steel shell or blank with label/spec visible.</li>
+<li>Caliper reading of actual steel thickness.</li>
+<li>Layout on top surface before cutting.</li>
+<li>Kerf coupon or test cut close-up.</li>
+<li>Rough-cut slots before deburring.</li>
+<li>Deburred slot root close-up with light showing radius.</li>
+<li>Temporary tuning support setup.</li>
+<li>Tuner/microphone placement during first strike.</li>
+<li>Tuning pass in progress with tool and tongue identified.</li>
+<li>Final feet or isolation mount underside.</li>
+<li>Finished top view with all tongues visible.</li>
+<li>Detail of port, rim, and edge trim.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>resources.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Resources</h1>
+
+<h2>Local Packet Sources</h2>
+
+<ul>
+<li>`steel-tongue-drum-design-table.xlsx` - workbook source for dimensions, K constants, target notes, and formulas.</li>
+<li>`design.md` - narrative design basis and assumptions.</li>
+<li>`validation.csv` - required measurement log.</li>
+<li>`drawings/steel-tongue-drum-layout.svg` - starter layout drawing.</li>
+</ul>
+
+<h2>Instrument Maker References</h2>
+
+<ul>
+<li>`instrument-maker-v4/references/new-instruments-v4.md` - steel tongue drum entry.</li>
+<li>`instrument-maker-v4/references/acoustic-models.md` - cantilever beam formulas and guard rules.</li>
+<li>`instrument-maker-v4/references/manufacturing-and-cnc.md` - machining and fixture guidance.</li>
+<li>`instrument-maker-v4/references/sourcing-and-production.md` - sourcing, RFQ, cut list, validation guidance.</li>
+</ul>
+
+<h2>Sister Repos</h2>
+
+<ul>
+<li>`tongue-drum` - wooden slit tongue drum done-bar reference and DoE pattern.</li>
+<li>`glockenspiel` - metal bar idiophone sibling concept.</li>
+<li>`handpan` - steel shell idiophone sibling, but different governing model.</li>
+</ul>
+
+<h2>Measurement Tools To Use</h2>
+
+<ul>
+<li>Chromatic tuner or spectral analysis app.</li>
+<li>Calipers for thickness, kerf, port, and slot checks.</li>
+<li>Consistent microphone placement.</li>
+<li>Temperature/humidity record for each tuning session.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>risks.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Risks</h1>
+
+<h2>Acoustic</h2>
+
+<table>
+<tr><th>Risk</th><th>Why it matters</th><th>Verification test</th></tr>
+<tr><td>Cantilever model over-promises accuracy</td><td>Real tongues are cut from a coupled steel shell, not ideal beams</td><td>First-strike each tongue and log cents error before tuning</td></tr>
+<tr><td>Mallet hardness changes apparent pitch and partial balance</td><td>Hard mallets excite noisy partials and can confuse readings</td><td>Record mallet type; compare soft vs medium mallet on two tongues</td></tr>
+<tr><td>Support condition shifts sustain and pitch</td><td>Feet/cradle can damp the shell or tongue roots</td><td>Measure before and after final mount</td></tr>
+</table>
+
+<h2>Structural</h2>
+
+<table>
+<tr><th>Risk</th><th>Why it matters</th><th>Verification test</th></tr>
+<tr><td>Slot roots crack</td><td>Sharp inside corners concentrate stress</td><td>Inspect radiused roots after tuning and after drift check</td></tr>
+<tr><td>Heat warp from cutting</td><td>Warped top changes stiffness and strike height</td><td>Photograph and straightedge-check before deburr</td></tr>
+<tr><td>Over-tuning weakens short tongues</td><td>Removing too much material can make tongues unstable</td><td>Log every material-removal pass and stop if sustain collapses</td></tr>
+</table>
+
+<h2>Ergonomic</h2>
+
+<table>
+<tr><th>Risk</th><th>Why it matters</th><th>Verification test</th></tr>
+<tr><td>Edge remains sharp</td><td>Player contact with rim and port is likely</td><td>Glove-off touch test only after full deburr</td></tr>
+<tr><td>Tongue spacing is cramped</td><td>Adjacent tongues may be struck accidentally</td><td>Play-test simple scale pattern with final mallets</td></tr>
+</table>
+
+<h2>Supply</h2>
+
+<table>
+<tr><th>Risk</th><th>Why it matters</th><th>Verification test</th></tr>
+<tr><td>Unknown steel grade</td><td>K and tuning response vary by material</td><td>Record grade/data sheet or mark as unknown in validation</td></tr>
+<tr><td>Nominal sheet gauge differs from actual</td><td>Thickness enters the formula linearly</td><td>Caliper thickness at multiple points</td></tr>
+</table>
+
+<h2>Fit / Finish</h2>
+
+<table>
+<tr><th>Risk</th><th>Why it matters</th><th>Verification test</th></tr>
+<tr><td>Finish adds damping or mass</td><td>Pitch and sustain can drift after coating</td><td>Measure before finish, after cure, and after drift rest</td></tr>
+<tr><td>Feet or trim rattle</td><td>Rattles mask tuning and reduce quality</td><td>Strike every tongue at playing volume after final assembly</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>validation-report.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Validation Report</h1>
+
+<h2>Current Status</h2>
+
+<p>No measured prototype data is present yet. The packet is documentation-complete enough to guide a prototype, but it is not public-review ready as a tuned instrument.</p>
+
+<h2>What Has Been Validated</h2>
+
+<ul>
+<li>A4 reference and equal-temperament target method are documented.</li>
+<li>Workbook assumptions have been surfaced in `design.md`.</li>
+<li>The required validation workflow exists in `validation.csv`.</li>
+<li>Manufacturing risks for laser, waterjet, CNC, deburring, support, finish, and drift are documented.</li>
+</ul>
+
+<h2>What Remains Open</h2>
+
+<ul>
+<li>Actual steel grade and thickness.</li>
+<li>Actual cutting kerf and edge condition.</li>
+<li>First-strike Hz for every tongue.</li>
+<li>Cents error before and after tuning.</li>
+<li>Pitch shift after final mounting.</li>
+<li>Pitch drift after finish cure and rest.</li>
+</ul>
+
+<h2>Readiness Call</h2>
+
+<p>Private-prototype ready: yes.</p>
+
+<p>Public-review ready: no. Keep the repo private or clearly marked as unvalidated until measured rough-cut, deburr, first-strike, tuning-pass, final-mount, and drift-check data exists.</p>
+</body></html>

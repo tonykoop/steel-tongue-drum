@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Steel Tongue Drum Packet</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; color: #1f2528; background: #f6f7f4; line-height: 1.55; }
+    header { background: #24363a; color: white; padding: 48px 24px; }
+    main { max-width: 980px; margin: 0 auto; padding: 28px 20px 56px; background: white; }
+    h1, h2 { line-height: 1.15; }
+    a { color: #215f69; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.95rem; }
+    th, td { border: 1px solid #ccd3d4; padding: 8px; text-align: left; vertical-align: top; }
+    th { background: #e9eeee; }
+    .callout { border-left: 5px solid #b94f32; padding: 12px 16px; background: #fff7f3; }
+    .drawing { width: 100%; border: 1px solid #ccd3d4; background: white; }
+    footer { padding: 24px; text-align: center; color: #526064; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Steel Tongue Drum</h1>
+    <p>Root-mode packet for a tuned steel tongue drum, with first-pass formulas and an empirical validation workflow.</p>
+  </header>
+  <main>
+    <section class="callout">
+      <strong>Readiness:</strong> private-prototype ready, not public-review ready until measured tuning data exists.
+    </section>
+
+    <h2>What this is</h2>
+    <p>This packet documents a 12 inch steel tongue drum concept from the existing workbook. It treats the cantilever model as a layout estimate and makes the measured tuning loop the center of the build.</p>
+
+    <h2>The design</h2>
+    <p>The baseline assumes a 12 inch diameter, 6 inch high steel shell, 0.079 inch steel, 0.040 inch kerf, 1 inch tongues, and A4 = 440 Hz. Final pitch depends on actual steel, cutting process, support, mallet, finish, and iterative tuning.</p>
+    <img class="drawing" src="../drawings/steel-tongue-drum-layout.svg" alt="Starter steel tongue drum layout">
+
+    <h2>Packet files</h2>
+    <table>
+      <tr><th>File</th><th>Purpose</th></tr>
+      <tr><td><a href="../design.md">design.md</a></td><td>Design basis, assumptions, formulas, and tuning workflow.</td></tr>
+      <tr><td><a href="../validation.csv">validation.csv</a></td><td>Measurement log for rough-cut, deburr, first strike, tuning pass, final mount, and drift check.</td></tr>
+      <tr><td><a href="../risks.md">risks.md</a></td><td>Failure modes and tests.</td></tr>
+      <tr><td><a href="../assembly-manual.md">assembly-manual.md</a></td><td>Shop sequence and photo checkpoints.</td></tr>
+      <tr><td><a href="../print-packet.html">print-packet.html</a></td><td>Print-friendly packet.</td></tr>
+    </table>
+
+    <h2>Tuning and validation</h2>
+    <p>The required validation rows are already in the packet. The build should not be described as tuned until those rows contain measured Hz, cents error, support condition, mallet, and environment.</p>
+
+    <h2>Known risks</h2>
+    <p>Laser HAZ, waterjet taper, CNC fixturing, burr mass, stress relief, final mount damping, mallet hardness, and finish mass can all move pitch. The packet records each as a measurable risk rather than pretending the spreadsheet can solve it alone.</p>
+  </main>
+  <footer>CC BY 4.0 - Tony Koop - instrument-maker catalogue</footer>
+</body>
+</html>

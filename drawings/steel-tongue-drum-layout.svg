@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="850" viewBox="0 0 1100 850">
+  <rect width="1100" height="850" fill="#ffffff"/>
+  <text x="60" y="55" font-family="Arial, sans-serif" font-size="28" font-weight="700">Steel Tongue Drum - Starter Layout Brief</text>
+  <text x="60" y="86" font-family="Arial, sans-serif" font-size="15">All tongue lengths are derived estimates. Final tuning requires measured strike data.</text>
+  <circle cx="420" cy="405" r="300" fill="#f7f8f8" stroke="#222" stroke-width="3"/>
+  <circle cx="420" cy="405" r="62.5" fill="#fff" stroke="#222" stroke-width="2"/>
+  <line x1="120" y1="405" x2="720" y2="405" stroke="#888" stroke-width="1" stroke-dasharray="8 8"/>
+  <line x1="420" y1="105" x2="420" y2="705" stroke="#888" stroke-width="1" stroke-dasharray="8 8"/>
+  <text x="385" y="411" font-family="Arial, sans-serif" font-size="16">2.5 in port</text>
+  <g fill="none" stroke="#2c5d63" stroke-width="8" stroke-linecap="round">
+    <path d="M420 150 C470 220 470 280 420 330"/>
+    <path d="M558 188 C560 270 540 315 482 348"/>
+    <path d="M652 294 C610 350 555 372 493 382"/>
+    <path d="M655 515 C590 505 540 475 495 428"/>
+    <path d="M558 623 C520 560 498 510 478 462"/>
+    <path d="M420 660 C395 570 392 505 405 470"/>
+    <path d="M282 623 C320 560 342 510 362 462"/>
+    <path d="M185 515 C250 505 300 475 345 428"/>
+    <path d="M188 294 C230 350 285 372 347 382"/>
+    <path d="M282 188 C280 270 300 315 358 348"/>
+    <path d="M360 132 C335 210 340 285 382 335"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="14" fill="#111">
+    <text x="430" y="145">Bass D3 4.16 in</text>
+    <text x="570" y="182">A3 3.39 in</text>
+    <text x="665" y="292">Bb3 3.30 in</text>
+    <text x="665" y="525">C4 3.11 in</text>
+    <text x="570" y="650">D4 2.94 in</text>
+    <text x="430" y="690">E4 2.77 in</text>
+    <text x="210" y="650">F4 2.69 in</text>
+    <text x="95" y="525">G4 2.54 in</text>
+    <text x="92" y="292">A4 2.40 in</text>
+    <text x="210" y="182">C5 2.20 in</text>
+    <text x="300" y="122">D5 2.08 in</text>
+  </g>
+  <rect x="780" y="130" width="260" height="250" fill="#fff" stroke="#222"/>
+  <text x="800" y="160" font-family="Arial, sans-serif" font-size="18" font-weight="700">Critical assumptions</text>
+  <text x="800" y="195" font-family="Arial, sans-serif" font-size="14">Body dia: 12 in</text>
+  <text x="800" y="220" font-family="Arial, sans-serif" font-size="14">Shell height: 6 in</text>
+  <text x="800" y="245" font-family="Arial, sans-serif" font-size="14">Steel thickness: 0.079 in</text>
+  <text x="800" y="270" font-family="Arial, sans-serif" font-size="14">Kerf: 0.040 in</text>
+  <text x="800" y="295" font-family="Arial, sans-serif" font-size="14">Tongue width: 1.0 in</text>
+  <text x="800" y="320" font-family="Arial, sans-serif" font-size="14">Root radii: required</text>
+  <text x="800" y="345" font-family="Arial, sans-serif" font-size="14">Final pitch: empirical</text>
+  <rect x="780" y="430" width="260" height="190" fill="#fff" stroke="#222"/>
+  <text x="800" y="460" font-family="Arial, sans-serif" font-size="18" font-weight="700">Validation gates</text>
+  <text x="800" y="495" font-family="Arial, sans-serif" font-size="14">1. Rough-cut measure</text>
+  <text x="800" y="520" font-family="Arial, sans-serif" font-size="14">2. Deburr inspect</text>
+  <text x="800" y="545" font-family="Arial, sans-serif" font-size="14">3. First strike log</text>
+  <text x="800" y="570" font-family="Arial, sans-serif" font-size="14">4. Tuning pass log</text>
+  <text x="800" y="595" font-family="Arial, sans-serif" font-size="14">5. Final mount + drift</text>
+  <text x="60" y="790" font-family="Arial, sans-serif" font-size="13">Revision: root packet starter, 2026-05-08. Not a final manufacturing drawing.</text>
+</svg>
