@@ -25,6 +25,26 @@ The important caveat: steel tongue drums are empirical instruments. The cantilev
 | Governing model | `f = K_steel * t / L^2`, first-pass only |
 | Validation state | No measured prototype data yet |
 
+## Predicted vs measured
+
+| Category | Current packet status | What still needs physical measurement |
+| --- | --- | --- |
+| Tongue lengths and target notes | First-pass predictions from the workbook and `design.md` | First-strike Hz, cents error, and trim history for every tongue |
+| Steel thickness and K behavior | 0.079 in and workbook K treated as assumptions | Actual sheet thickness, steel grade, and back-solved effective K after tuning |
+| Cutting process | Laser / waterjet / CNC options documented | Actual kerf, burr condition, HAZ or taper, and any warp from the chosen process |
+| Shell / port behavior | Port and body resonance treated as support variables | Actual port diameter, internal geometry, mount-dependent sustain, and any shell-coupled pitch shift |
+| Final readiness | Private-prototype ready packet | Measured rough-cut, deburr, tuning-pass, final-mount, finish-cure, and drift-check data |
+
+## Physical measurements still needed
+
+- Steel grade or best-available supplier spec for the actual blank.
+- Thickness measurements at multiple points on the real shell or top plate.
+- Kerf coupon results for the chosen cutting method, including burr and taper notes.
+- First-strike Hz for bass plus every numbered tongue before trimming.
+- Cents error before tuning, after tuning, after final mounting, after finish cure, and after 24-72 hour rest.
+- Port diameter and any change after deburring or finish.
+- Support-condition notes for temporary cradle versus final feet.
+
 ## Packet map
 
 - `design.md` - design intent, assumptions, formulas, tuning workflow.
@@ -32,8 +52,11 @@ The important caveat: steel tongue drums are empirical instruments. The cantilev
 - `bom.csv`, `sourcing.csv`, `cut-list.csv` - purchasing and shop prep.
 - `assembly-manual.md` - rough build, cutting, tuning, finish, and mount steps.
 - `validation.csv` - tuning and process validation rows, including rough-cut, deburr, first strike, tuning pass, final mount, and drift check.
+- `validation-report.md` - current readiness call, acceptance gates, and human-owned measurement work.
 - `drawing-brief.md`, `drawings/` - drawing requirements and starter layout SVG.
 - `cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs.
+- `images/`, `data/`, `wolfram/` - starter folders for future photos, measured results, notebook notes, and the measurement capture plan.
+- `issue-comment-draft.md` - sprint-ready issue summary for `tonykoop/steel-tongue-drum#1`; do not post automatically.
 - `risks.md` - acoustic, structural, ergonomic, supply, and finish risks with tests.
 - `capstone-deck.md`, `print-packet.md`, `print-packet.html`, `site/index.html` - review and presentation layers.
 
