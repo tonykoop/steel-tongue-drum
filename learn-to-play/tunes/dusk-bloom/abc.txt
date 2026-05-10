@@ -1,0 +1,13 @@
+X:5
+T:Dusk Bloom
+C:Original — Heifer Zephyr / MIT License
+M:4/4
+L:1/8
+Q:1/4=80
+K:Dmin
+%% Original composition for steel tongue drum in D Aeolian
+%% Character: gentle, meditative evening quality
+D4 A4 | d4 c4 | A4 G4 | F8 |
+F4 A4 | c4 d4 | c4 A4 | G8 |
+A4 c4 | d4 e4 | d4 c4 | A8 |
+G4 F4 | G4 A4 | d4 c4 | D8 |
