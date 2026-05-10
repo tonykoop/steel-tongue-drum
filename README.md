@@ -64,6 +64,18 @@ The important caveat: steel tongue drums are empirical instruments. The cantilev
 
 This packet is private-prototype ready. It should stay private for public technical review until a rough-cut prototype is struck, tuned, mounted, drift-checked, and logged with measured Hz and cents error.
 
+## Round 3 L2 Boundary
+
+For the Round 3 build-packet sweep, treat this repo as an L2 root-mode packet:
+complete enough for design review, sourcing review, and first prototype
+planning, but not L3/build-ready evidence. The existing workbook and packet
+tables define a controlled measurement path; they do not replace measured
+strike data from a real steel shell.
+
+The acceptance line for L3 is unchanged: every tongue needs target Hz, measured
+Hz, cents error, support condition, trim history, final mount shift, finish
+shift, and 24-72 hour drift logged in `validation.csv`.
+
 ## License
 
 [CC BY 4.0](LICENSE) - see LICENSE for details.
