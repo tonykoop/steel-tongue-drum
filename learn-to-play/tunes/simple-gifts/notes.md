@@ -1,6 +1,6 @@
 # Notes: Simple Gifts (Steel Tongue Drum)
 
-**Provenance:** Elder Joseph Brackett, Shaker hymn (1848). PD. 
+**Provenance:** Elder Joseph Brackett, Shaker hymn (1848). PD.
 Copland's arrangement is NOT used — freshly arranged from the lead-sheet melody.
 
 **Range check:** E4–D5. E4 is the lowest note (tongue 5), D5 is the highest (tongue 10/11).

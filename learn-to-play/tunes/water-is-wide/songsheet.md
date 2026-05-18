@@ -1,7 +1,7 @@
 # The Water Is Wide — Songsheet (Steel Tongue Drum)
 
-**Key:** D natural minor (F major equivalent)  **Tempo:** ♩= 80  
-**Meter:** 4/4  **Difficulty:** ★★☆  **Range:** E4–D5  
+**Key:** D natural minor (F major equivalent)  **Tempo:** ♩= 80
+**Meter:** 4/4  **Difficulty:** ★★☆  **Range:** E4–D5
 **Source:** Traditional, PD; arranged for D Aeolian
 
 ## Music

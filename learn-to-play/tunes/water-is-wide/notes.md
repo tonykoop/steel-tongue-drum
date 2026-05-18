@@ -1,6 +1,6 @@
 # Notes: The Water Is Wide
 
-**Provenance:** Traditional English/Scottish ballad. PD. 
+**Provenance:** Traditional English/Scottish ballad. PD.
 Arranged here for D natural minor — the original is commonly played in G or F major.
 No copyrighted arrangement is reproduced; melody is freshly arranged.
 

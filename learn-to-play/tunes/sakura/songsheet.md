@@ -1,7 +1,7 @@
 # Sakura Sakura — Songsheet
 
-**Key:** A Bb D E (In scale / Sakura pentatonic)  **Tempo:** ♩= 72  
-**Meter:** 4/4  **Difficulty:** ★☆☆  **Range:** A3–E4  
+**Key:** A Bb D E (In scale / Sakura pentatonic)  **Tempo:** ♩= 72
+**Meter:** 4/4  **Difficulty:** ★☆☆  **Range:** A3–E4
 **Source:** Traditional Japanese, Edo period (18th c.), public domain
 
 ## Music

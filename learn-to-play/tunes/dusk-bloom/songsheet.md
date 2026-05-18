@@ -1,6 +1,6 @@
 # Dusk Bloom — Songsheet
 
-**Key:** D Aeolian (natural minor)  **Tempo:** ♩= 80  **Meter:** 4/4  **Difficulty:** ★★★  
+**Key:** D Aeolian (natural minor)  **Tempo:** ♩= 80  **Meter:** 4/4  **Difficulty:** ★★★
 **Range:** D3–E4  **License:** MIT (original composition — Heifer Zephyr)
 
 ## Music

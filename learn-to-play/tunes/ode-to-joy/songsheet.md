@@ -1,6 +1,6 @@
 # Ode to Joy — Songsheet (Steel Tongue Drum)
 
-**Key:** D natural minor (adapted)  **Tempo:** ♩= 84  **Meter:** 4/4  **Difficulty:** ★★☆  
+**Key:** D natural minor (adapted)  **Tempo:** ♩= 84  **Meter:** 4/4  **Difficulty:** ★★☆
 **Range:** D4–A4  **Source:** Beethoven, Symphony No. 9 (1824), PD; adapted for D Aeolian
 
 ## Music
