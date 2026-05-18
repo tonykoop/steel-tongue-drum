@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steel Tongue Drum Explorer</title>
+<style>
+:root {
+  color-scheme: light;
+  --ink: #1f2528;
+  --muted: #5e676e;
+  --line: #d8d9d6;
+  --paper: #f7f7f4;
+  --steel: #4f6770;
+  --heat: #b15d34;
+  --green: #5d7567;
+  --gold: #b48a32;
+  --dark: #20292e;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.5;
+}
+a { color: inherit; }
+.hero {
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(360px, 1.05fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  padding: clamp(28px, 5vw, 64px);
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(247,247,244,.98), rgba(247,247,244,.82) 48%, rgba(247,247,244,.98)),
+    radial-gradient(circle at 78% 42%, rgba(79,103,112,.18), transparent 38%);
+}
+.hero h1 {
+  max-width: 860px;
+  margin: 0 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: .9;
+  letter-spacing: 0;
+}
+.hero p {
+  max-width: 690px;
+  margin: 0 0 24px;
+  color: #30383d;
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+}
+.status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pill {
+  border: 1px solid #aeb6b8;
+  background: rgba(255,255,255,.82);
+  padding: 8px 12px;
+  font-size: .82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.visual {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 14px;
+  box-shadow: 0 22px 60px rgba(22,32,36,.12);
+}
+.visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+main { display: grid; }
+section {
+  padding: clamp(44px, 7vw, 84px) clamp(22px, 5vw, 64px);
+  border-bottom: 1px solid var(--line);
+}
+.inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+h2 {
+  margin: 0 0 20px;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+.lede {
+  max-width: 820px;
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.tile {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 18px;
+  min-height: 160px;
+}
+.tile b {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--steel);
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.tile strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.45rem;
+}
+.tile span { color: var(--muted); }
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(360px, 1.05fr);
+  gap: 34px;
+  align-items: start;
+}
+.checks {
+  display: grid;
+  gap: 12px;
+}
+.check {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.num {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--dark);
+  font-weight: 800;
+}
+.check h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.check p { margin: 0; color: var(--muted); }
+.authority {
+  background: #eef0ee;
+}
+.authority-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.authority-item {
+  background: rgba(255,255,255,.76);
+  border-left: 5px solid var(--green);
+  padding: 18px;
+}
+.authority-item.blocked { border-color: var(--heat); }
+.authority-item h3 { margin: 0 0 8px; }
+.authority-item p { margin: 0; color: var(--muted); }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid var(--dark);
+  background: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.link.primary {
+  background: var(--dark);
+  color: #fff;
+}
+footer {
+  padding: 24px clamp(22px, 5vw, 64px);
+  color: var(--muted);
+  font-size: .92rem;
+}
+@media (max-width: 960px) {
+  .hero, .split, .authority-grid { grid-template-columns: 1fr; }
+  .hero { min-height: auto; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .hero, section { padding-left: 18px; padding-right: 18px; }
+  .grid { grid-template-columns: 1fr; }
+  .check { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div>
+    <h1>Steel Tongue Drum</h1>
+    <p>Root-mode packet for a 12 inch steel tongue drum prototype. The workbook gives first-pass geometry; the instrument is not tuned or build-ready until the real steel shell is cut, struck, trimmed, mounted, finished, and drift-checked.</p>
+    <div class="status-strip" aria-label="readiness status">
+      <span class="pill">L2 packet</span>
+      <span class="pill">Prototype planning</span>
+      <span class="pill">Not L3</span>
+      <span class="pill">Measurement required</span>
+    </div>
+  </div>
+  <figure class="visual">
+    <img src="drawings/steel-tongue-drum-layout.svg" alt="Steel tongue drum starter layout preview">
+  </figure>
+</header>
+<main>
+  <section>
+    <div class="inner">
+      <h2>Baseline</h2>
+      <p class="lede">This explorer is a review surface for issue #1. It keeps the useful packet shape visible while separating workbook predictions from measured prototype evidence.</p>
+      <div class="grid">
+        <div class="tile"><b>Body</b><strong>12 in</strong><span>round shell / vessel assumption from workbook.</span></div>
+        <div class="tile"><b>Height</b><strong>6 in</strong><span>planning shell height, not a measured blank.</span></div>
+        <div class="tile"><b>Steel</b><strong>0.079 in</strong><span>nominal thickness requiring real blank measurement.</span></div>
+        <div class="tile"><b>Tongues</b><strong>11</strong><span>D3 bass plus upper tongues from the layout study.</span></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="inner split">
+      <div>
+        <h2>Evidence Path</h2>
+        <p class="lede">The risk is not whether the packet is tidy; it is whether slot geometry, heat/stress, and tuning behavior have been proven on real steel. These gates keep that line bright.</p>
+        <div class="checks">
+          <div class="check"><span class="num">1</span><div><h3>Material check</h3><p>Record actual steel grade, thickness at multiple points, and forming or weld notes before trusting the workbook constant.</p></div></div>
+          <div class="check"><span class="num">2</span><div><h3>Kerf coupon</h3><p>Cut a process coupon to capture kerf, taper, burrs, heat affected zone, warp, and slot-root radius before the full tongue field.</p></div></div>
+          <div class="check"><span class="num">3</span><div><h3>First strike</h3><p>Measure every tongue before trimming with the same support, mallet, strike point, microphone distance, and environment notes.</p></div></div>
+          <div class="check"><span class="num">4</span><div><h3>Tuning loop</h3><p>Log cents error and trim history through rough-cut, deburr, tuning, final mount, finish cure, and 24-72 hour drift check.</p></div></div>
+        </div>
+      </div>
+      <div class="authority-item blocked">
+        <h3>Current Readiness</h3>
+        <p>No measured prototype data is logged yet. Treat target notes and slot dimensions as planning values until `validation.csv` records measured Hz, cents error, support condition, finish state, and safety inspection results.</p>
+      </div>
+    </div>
+  </section>
+  <section class="authority">
+    <div class="inner">
+      <h2>Authority Register</h2>
+      <div class="authority-grid">
+        <article class="authority-item">
+          <h3>Planning Authority</h3>
+          <p><code>steel-tongue-drum-design-table.xlsx</code>, <code>family-spec.csv</code>, and <code>validation.csv</code> define the first prototype and measurement loop.</p>
+        </article>
+        <article class="authority-item blocked">
+          <h3>Missing For V5</h3>
+          <p>No reviewed DXF, parametric CAD source, measured tuning log, MCP provenance log, or derived CAD render is present in this round.</p>
+        </article>
+        <article class="authority-item blocked">
+          <h3>Safety Boundary</h3>
+          <p>Inside slot ends, burrs, sharp edges, heat affected zones, oil-can distortion, and support rattles remain inspection gates, not assumptions.</p>
+        </article>
+        <article class="authority-item">
+          <h3>Visual Boundary</h3>
+          <p><code>visual-output-register.csv</code> records the layout SVG as a derived preview. It is not a cut-ready plate.</p>
+        </article>
+      </div>
+      <div class="links" aria-label="packet links">
+        <a class="link primary" href="capstone-manifest.json">Manifest</a>
+        <a class="link" href="visual-output-register.csv">Visual register</a>
+        <a class="link" href="validation.csv">Validation gates</a>
+        <a class="link" href="validation-report.md">Validation report</a>
+        <a class="link" href="print-packet.html">Print packet</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  Explorer generated for issue #1 on 2026-05-18. Generated or support visuals do not control fabrication; use CAD, DXF, design tables, measured templates, or logged physical measurements for authority.
+</footer>
+</body>
+</html>
