@@ -1,0 +1,2 @@
+coupon_id,status,material_source,measured_thickness_in,process,machine_or_vendor,nominal_kerf_in,measured_kerf_in,taper_or_edge_notes,burr_haz_warp_notes,pre_deburr_hz,post_deburr_hz,cam_compensation_decision,evidence_path,next_action
+STD-COUPON-001,not_run,TBD,TBD,TBD,TBD,0.040,TBD,TBD,TBD,TBD,TBD,blocked_no_coupon_evidence,TBD,Cut and measure a representative slot/root-radius coupon before promoting CAD/DXF/CAM authority.

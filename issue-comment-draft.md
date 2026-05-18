@@ -28,5 +28,5 @@ Remaining assumptions / blockers before closing after human review:
 
 - no measured prototype data exists yet for first-strike, tuning-pass, final-mount, finish-cure, or drift-check stages
 - actual steel grade, actual thickness, actual kerf, burr condition, and mount-dependent pitch shift still need to be measured on the real build
-- no build-ready CAM or final tuned CAD should be claimed until the coupon-first process in `cnc/README.md` and `data/measurement-capture-plan.md` is completed
+- no build-ready CAM or final tuned CAD should be claimed until the coupon-first process in `cnc/README.md`, `cnc/coupon-first-cam-cad-gate.md`, `data/measurement-capture-plan.md`, and `data/coupon-cam-cad-log.csv` is completed
 - real process photos should replace starter placeholders before public showcase use

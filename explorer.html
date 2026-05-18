@@ -225,7 +225,7 @@ footer {
   <section>
     <div class="inner">
       <h2>Baseline</h2>
-      <p class="lede">This explorer is a review surface for issue #1. It keeps the useful packet shape visible while separating workbook predictions from measured prototype evidence.</p>
+      <p class="lede">This explorer is a review surface for issue #5. It keeps the useful packet shape visible while separating workbook predictions, validator-clean docs, and coupon-proven CAM/CAD authority.</p>
       <div class="grid">
         <div class="tile"><b>Body</b><strong>12 in</strong><span>round shell / vessel assumption from workbook.</span></div>
         <div class="tile"><b>Height</b><strong>6 in</strong><span>planning shell height, not a measured blank.</span></div>
@@ -242,8 +242,9 @@ footer {
         <div class="checks">
           <div class="check"><span class="num">1</span><div><h3>Material check</h3><p>Record actual steel grade, thickness at multiple points, and forming or weld notes before trusting the workbook constant.</p></div></div>
           <div class="check"><span class="num">2</span><div><h3>Kerf coupon</h3><p>Cut a process coupon to capture kerf, taper, burrs, heat affected zone, warp, and slot-root radius before the full tongue field.</p></div></div>
-          <div class="check"><span class="num">3</span><div><h3>First strike</h3><p>Measure every tongue before trimming with the same support, mallet, strike point, microphone distance, and environment notes.</p></div></div>
-          <div class="check"><span class="num">4</span><div><h3>Tuning loop</h3><p>Log cents error and trim history through rough-cut, deburr, tuning, final mount, finish cure, and 24-72 hour drift check.</p></div></div>
+          <div class="check"><span class="num">3</span><div><h3>CAM/CAD decision</h3><p>Record the coupon result in <code>data/coupon-cam-cad-log.csv</code> before promoting DXF, CAM compensation, or G-code authority.</p></div></div>
+          <div class="check"><span class="num">4</span><div><h3>First strike</h3><p>Measure every tongue before trimming with the same support, mallet, strike point, microphone distance, and environment notes.</p></div></div>
+          <div class="check"><span class="num">5</span><div><h3>Tuning loop</h3><p>Log cents error and trim history through rough-cut, deburr, tuning, final mount, finish cure, and 24-72 hour drift check.</p></div></div>
         </div>
       </div>
       <div class="authority-item blocked">
@@ -262,7 +263,11 @@ footer {
         </article>
         <article class="authority-item blocked">
           <h3>Missing For V5</h3>
-          <p>No reviewed DXF, parametric CAD source, measured tuning log, MCP provenance log, or derived CAD render is present in this round.</p>
+          <p>No reviewed DXF, parametric CAD source, measured tuning log, coupon CAM/CAD evidence, MCP provenance log, or derived CAD render is present in this round.</p>
+        </article>
+        <article class="authority-item blocked">
+          <h3>Issue 5 Coupon Gate</h3>
+          <p><code>cnc/coupon-first-cam-cad-gate.md</code> and <code>data/coupon-cam-cad-log.csv</code> define the blocked promotion path from documentation to machine-ready authority.</p>
         </article>
         <article class="authority-item blocked">
           <h3>Safety Boundary</h3>
@@ -277,6 +282,7 @@ footer {
         <a class="link primary" href="capstone-manifest.json">Manifest</a>
         <a class="link" href="visual-output-register.csv">Visual register</a>
         <a class="link" href="validation.csv">Validation gates</a>
+        <a class="link" href="cnc/coupon-first-cam-cad-gate.md">CAM/CAD gate</a>
         <a class="link" href="validation-report.md">Validation report</a>
         <a class="link" href="print-packet.html">Print packet</a>
       </div>
@@ -284,7 +290,7 @@ footer {
   </section>
 </main>
 <footer>
-  Explorer generated for issue #1 on 2026-05-18. Generated or support visuals do not control fabrication; use CAD, DXF, design tables, measured templates, or logged physical measurements for authority.
+  Explorer updated for issue #5 on 2026-05-18. Generated or support visuals do not control fabrication; use CAD, DXF, design tables, measured templates, coupon logs, or logged physical measurements for authority.
 </footer>
 </body>
 </html>

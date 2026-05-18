@@ -24,6 +24,7 @@ The packet is ready for human shop review and first-prototype planning. All tong
 - The required tuning workflow exists in `validation.csv`.
 - Manufacturing risks for laser, waterjet, CNC, deburring, support, finish, and drift are documented.
 - `cnc/README.md`, `jig-decision.md`, and `data/measurement-capture-plan.md` define the coupon, support, and evidence path before any public tuning claims.
+- `cnc/coupon-first-cam-cad-gate.md` and `data/coupon-cam-cad-log.csv` now define the issue #5 CAM/CAD promotion gate and evidence row.
 
 ## Physical measurements still needed
 
@@ -43,6 +44,7 @@ The packet is ready for human shop review and first-prototype planning. All tong
 |---|---|---|---|
 | Material confirmation | Real blank documented | Grade/spec recorded or explicitly marked unknown; thickness measured at multiple points | Pending build |
 | Kerf coupon | First-process sample | Actual slot width and burr condition logged before cutting the instrument | Pending build |
+| CAM/CAD release | Coupon-first authority | Coupon log records kerf, edge condition, and compensation decision before DXF/CAM promotion | Blocked until coupon evidence |
 | Rough-cut first strike | Every tongue measured | Stable Hz captured for bass plus all numbered tongues | Pending build |
 | Tuning pass | Pre-mount tuning | Each tongue within plus/minus 10 cents before final mount, or deviation explained | Pending build |
 | Final mount | Mount-dependent shift documented | Temporary support vs final feet comparison recorded | Pending build |
@@ -54,7 +56,7 @@ The packet is ready for human shop review and first-prototype planning. All tong
 
 1. Measure the real blank thickness at multiple points and note the best available steel spec.
 2. Cut and strike a kerf/tuning coupon using the actual process before cutting the full tongue field.
-3. Document slot taper, burr condition, and any HAZ or warp.
+3. Document slot taper, burr condition, any HAZ or warp, and the CAM compensation decision in `data/coupon-cam-cad-log.csv`.
 4. Rough-cut the full tongue field and capture first-strike Hz for every tongue on the temporary cradle.
 5. Tune iteratively, logging every trim pass and cents change in `validation.csv`.
 6. Install final feet or isolation supports and re-measure the full tongue set.
@@ -68,3 +70,6 @@ Private-prototype ready: yes.
 Public-review ready as a tuned instrument: no.
 
 Close-ready as a public-safe build packet: yes, provided the repo continues to describe all tuning values as predictions until the measurements above are captured.
+
+CAM/CAD build-ready: no. The issue #5 coupon gate remains blocked until a real
+coupon row is measured and reviewed.
