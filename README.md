@@ -1,12 +1,17 @@
 # Steel Tongue Drum
 
-Root-mode engineering packet for a tuned steel tongue drum: a slit-tongue steel idiophone whose final tuning must be measured and corrected on the actual prototype.
+Root-mode engineering packet for a tunable steel tongue drum: a slit-tongue steel idiophone whose final tuning must be measured and corrected on the actual prototype.
+
+**Status:** L2 root-mode packet / prototype planning. This repo is not L3,
+measured, or build-ready evidence yet; slot geometry, heat/stress behavior,
+tuning response, support shift, finish shift, and safety checks still require
+logged prototype measurements.
 
 This repo is part of the [tonykoop/instrument-maker](https://github.com/tonykoop/instrument-maker) catalogue and uses the `instrument-maker-v4` root packet shape.
 
 ## What this is
 
-This packet turns the existing `steel-tongue-drum-design-table.xlsx` into a build-ready documentation set for a circular steel tongue drum. The workbook provides first-pass geometry, material constants, target MIDI notes, a rough Helmholtz body estimate, and tongue length formulas.
+This packet turns the existing `steel-tongue-drum-design-table.xlsx` into a prototype-planning documentation set for a circular steel tongue drum. The workbook provides first-pass geometry, material constants, target MIDI notes, a rough Helmholtz body estimate, and tongue length formulas.
 
 The important caveat: steel tongue drums are empirical instruments. The cantilever equation is useful for rough layout, but final pitch depends on steel batch, residual stress, slot kerf, heat affected zone, burrs, mounting isolation, mallet hardness, finish mass, and the way each tongue is trimmed. This repo is therefore not "tuned" until measured prototype data exists in `validation.csv`.
 
@@ -54,6 +59,8 @@ The important caveat: steel tongue drums are empirical instruments. The cantilev
 - `validation.csv` - tuning and process validation rows, including rough-cut, deburr, first strike, tuning pass, final mount, and drift check.
 - `validation-report.md` - current readiness call, acceptance gates, and human-owned measurement work.
 - `drawing-brief.md`, `drawings/` - drawing requirements and starter layout SVG.
+- `explorer.html` - issue #1 explorer surface for packet status, authority boundaries, and measurement gates.
+- `visual-output-register.csv` - visual authority register for the workbook, measurement template, and layout SVG.
 - `cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs.
 - `images/`, `data/`, `wolfram/` - starter folders for future photos, measured results, notebook notes, and the measurement capture plan.
 - `issue-comment-draft.md` - sprint-ready issue summary for `tonykoop/steel-tongue-drum#1`; do not post automatically.
@@ -62,7 +69,7 @@ The important caveat: steel tongue drums are empirical instruments. The cantilev
 
 ## Readiness
 
-This packet is private-prototype ready. It should stay private for public technical review until a rough-cut prototype is struck, tuned, mounted, drift-checked, and logged with measured Hz and cents error.
+This packet is private-prototype planning ready. It should stay private for public technical review until a rough-cut prototype is struck, tuned, mounted, drift-checked, and logged with measured Hz and cents error.
 
 ## Round 3 L2 Boundary
 
