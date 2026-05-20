@@ -14,6 +14,7 @@ This file defines the minimum physical evidence needed before the steel tongue d
 - Record actual kerf width at several points.
 - Photograph taper, burrs, discoloration, and any warp.
 - Strike the coupon before and after deburring if the coupon geometry supports it.
+- Record the CAM/CAD promotion decision in `data/coupon-cam-cad-log.csv`.
 
 ## 3. Rough-cut first strike
 
@@ -40,4 +41,5 @@ Minimum evidence for a public-safe tuning claim:
 - populated `validation.csv`
 - updated `validation-report.md`
 - process notes or photos for material, coupon, and first-strike stages
+- populated `data/coupon-cam-cad-log.csv` row for the coupon-first CAM/CAD gate
 - explicit note of any remaining unknowns or revisions to the workbook assumptions

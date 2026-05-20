@@ -58,10 +58,11 @@ The important caveat: steel tongue drums are empirical instruments. The cantilev
 - `assembly-manual.md` - rough build, cutting, tuning, finish, and mount steps.
 - `validation.csv` - tuning and process validation rows, including rough-cut, deburr, first strike, tuning pass, final mount, and drift check.
 - `validation-report.md` - current readiness call, acceptance gates, and human-owned measurement work.
+- `data/coupon-cam-cad-log.csv` - coupon evidence capture table for CAM/CAD promotion decisions.
 - `drawing-brief.md`, `drawings/` - drawing requirements and starter layout SVG.
-- `explorer.html` - issue #1 explorer surface for packet status, authority boundaries, and measurement gates.
+- `explorer.html` - issue #5 explorer surface for packet status, authority boundaries, and measurement gates.
 - `visual-output-register.csv` - visual authority register for the workbook, measurement template, and layout SVG.
-- `cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs.
+- `cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs, including the issue #5 coupon-first CAM/CAD authority gate.
 - `images/`, `data/`, `wolfram/` - starter folders for future photos, measured results, notebook notes, and the measurement capture plan.
 - `issue-comment-draft.md` - sprint-ready issue summary for `tonykoop/steel-tongue-drum#1`; do not post automatically.
 - `risks.md` - acoustic, structural, ergonomic, supply, and finish risks with tests.
@@ -82,6 +83,15 @@ strike data from a real steel shell.
 The acceptance line for L3 is unchanged: every tongue needs target Hz, measured
 Hz, cents error, support condition, trim history, final mount shift, finish
 shift, and 24-72 hour drift logged in `validation.csv`.
+
+## Issue 5 CAM/CAD Coupon Gate
+
+Issue #5 is not complete yet. The repo now has an explicit
+`cnc/coupon-first-cam-cad-gate.md` and `data/coupon-cam-cad-log.csv` so the
+first coupon can promote or block CAD/DXF/CAM decisions with evidence. Until
+that coupon row contains real material, kerf, taper, burr/HAZ/warp, and strike
+measurements, the starter SVG, workbook, CAD brief, and CNC brief remain
+documentation and prototype-planning artifacts only.
 
 ## License
 

@@ -25,7 +25,7 @@
   </header>
   <main>
     <section class="callout">
-      <strong>Readiness:</strong> private-prototype ready, not public-review ready until measured tuning data exists.
+      <strong>Readiness:</strong> private-prototype ready, not CAM/CAD build-ready or public-review ready until coupon and measured tuning data exists.
     </section>
 
     <h2>What this is</h2>
@@ -46,7 +46,7 @@
     </table>
 
     <h2>Tuning and validation</h2>
-    <p>The required validation rows are already in the packet. The build should not be described as tuned until those rows contain measured Hz, cents error, support condition, mallet, and environment.</p>
+    <p>The required validation rows are already in the packet. The build should not be described as tuned until those rows contain measured Hz, cents error, support condition, mallet, and environment. CAM/CAD release also stays blocked until <code>data/coupon-cam-cad-log.csv</code> records real coupon evidence.</p>
 
     <h2>Known risks</h2>
     <p>Laser HAZ, waterjet taper, CNC fixturing, burr mass, stress relief, final mount damping, mallet hardness, and finish mass can all move pitch. The packet records each as a measurable risk rather than pretending the spreadsheet can solve it alone.</p>

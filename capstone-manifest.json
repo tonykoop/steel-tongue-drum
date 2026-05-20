@@ -1,7 +1,7 @@
 {
   "title": "Steel Tongue Drum - V5 issue readiness packet",
   "repo": "tonykoop/steel-tongue-drum",
-  "issue": 1,
+  "issue": 5,
   "generated": "2026-05-18",
   "readiness": {
     "current_status": "L2 root-mode packet / prototype planning",
@@ -31,6 +31,8 @@
     "validation.csv",
     "validation-report.md",
     "data/measurement-capture-plan.md",
+    "data/coupon-cam-cad-log.csv",
+    "cnc/coupon-first-cam-cad-gate.md",
     "risks.md",
     "resources.md",
     "jig-decision.md",
@@ -60,6 +62,11 @@
       "next_action": "Export a reviewed DXF with slot geometry, root radius, datum, kerf, and stress-relief notes before any cut-ready claim."
     },
     {
+      "deliverable": "coupon-first CAM/CAD authority evidence",
+      "status": "blocked-no-coupon-evidence",
+      "next_action": "Populate data/coupon-cam-cad-log.csv from a real material/process coupon before promoting CAD, DXF, CAM, or G-code authority."
+    },
+    {
       "deliverable": "measured tuning log",
       "status": "missing",
       "next_action": "Populate validation.csv with real first-strike, trim, mount, finish, and drift readings for every tongue."
@@ -82,6 +89,7 @@
   ],
   "validation_commands": [
     "jq . capstone-manifest.json",
+    "python3 -c \"import csv; files=['validation.csv','visual-output-register.csv','data/coupon-cam-cad-log.csv']; [print(f, len(list(csv.DictReader(open(f, newline=''))))) for f in files]\"",
     "test -f explorer.html",
     "python3 ${CODEX_HOME:-$HOME/.codex}/skills/instrument-maker/scripts/validate_visual_authority.py visual-output-register.csv",
     "python3 ${CODEX_HOME:-$HOME/.codex}/skills/instrument-maker/scripts/validate_acoustic_law.py family-spec.csv",
@@ -90,6 +98,6 @@
   "notes": [
     "All artifact paths are repository-relative.",
     "This manifest intentionally preserves the current Wolfram source path, wolfram-starter.wl; the inspected stash row used an older steel-tongue-drum-starter.wl name.",
-    "This round promotes issue/explorer readiness without claiming complete V5, L3, measured, or build-ready status."
+    "Issue #5 remains blocked on coupon evidence; this round adds the gate and evidence template without claiming complete V5, L3, measured, CAM-ready, or build-ready status."
   ]
 }

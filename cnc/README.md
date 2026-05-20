@@ -4,6 +4,9 @@
 
 Do not start with the full tongue field. Start with a coupon that uses the same material, process, and nominal kerf as the intended build. The coupon's job is to reveal real kerf, edge taper, burr behavior, and whether the chosen process pushes the first strike noticeably sharp or flat before the actual drum is cut.
 
+Issue #5 gate file: `coupon-first-cam-cad-gate.md`.
+Coupon evidence log: `../data/coupon-cam-cad-log.csv`.
+
 ## Process Comparison
 
 | Process | Strength | Risk | Required validation |
@@ -27,6 +30,7 @@ Do not start with the full tongue field. Start with a coupon that uses the same 
 - Every slot end must be radiused; no sharp internal corners.
 - The layout must keep a stable orientation mark and datum so the tuning log matches the physical instrument.
 - Actual kerf and any CAM compensation must be written into `validation.csv` or `data/measurement-capture-plan.md`.
+- The coupon result and CAM compensation decision must be written into `data/coupon-cam-cad-log.csv`.
 - No file in this folder should be described as build-ready G-code until coupon evidence and first-strike measurements exist.
 
 ## CAM Notes
