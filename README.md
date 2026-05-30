@@ -2,10 +2,10 @@
 
 Root-mode engineering packet for a tunable steel tongue drum: a slit-tongue steel idiophone whose final tuning must be measured and corrected on the actual prototype.
 
-**Status:** L2 root-mode packet / prototype planning. This repo is not L3,
-measured, or build-ready evidence yet; slot geometry, heat/stress behavior,
-tuning response, support shift, finish shift, and safety checks still require
-logged prototype measurements.
+**Status:** L2 V5 build-packet candidate / prototype planning. This repo is
+not L3, measured, or build-ready evidence yet; slot geometry, heat/stress
+behavior, tuning response, support shift, finish shift, and safety checks
+still require logged prototype measurements.
 
 This repo is part of the [tonykoop/instrument-maker](https://github.com/tonykoop/instrument-maker) catalogue and uses the `instrument-maker-v4` root packet shape.
 
@@ -59,10 +59,12 @@ The important caveat: steel tongue drums are empirical instruments. The cantilev
 - `validation.csv` - tuning and process validation rows, including rough-cut, deburr, first strike, tuning pass, final mount, and drift check.
 - `validation-report.md` - current readiness call, acceptance gates, and human-owned measurement work.
 - `data/coupon-cam-cad-log.csv` - coupon evidence capture table for CAM/CAD promotion decisions.
+- `v5-packet-surface.md` - V5 authority map, no-MCP provenance note, and
+  coupon-first promotion gates for issue #5.
 - `drawing-brief.md`, `drawings/` - drawing requirements and starter layout SVG.
 - `explorer.html` - issue #5 explorer surface for packet status, authority boundaries, and measurement gates.
 - `visual-output-register.csv` - visual authority register for the workbook, measurement template, and layout SVG.
-- `cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs, including the issue #5 coupon-first CAM/CAD authority gate.
+- `cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs, including the issue #5 coupon-first CAM/CAD authority gate and `cad/mcp-session-log.md` no-tool provenance stub.
 - `images/`, `data/`, `wolfram/` - starter folders for future photos, measured results, notebook notes, and the measurement capture plan.
 - `issue-comment-draft.md` - sprint-ready issue summary for `tonykoop/steel-tongue-drum#1`; do not post automatically.
 - `risks.md` - acoustic, structural, ergonomic, supply, and finish risks with tests.
@@ -92,6 +94,11 @@ first coupon can promote or block CAD/DXF/CAM decisions with evidence. Until
 that coupon row contains real material, kerf, taper, burr/HAZ/warp, and strike
 measurements, the starter SVG, workbook, CAD brief, and CNC brief remain
 documentation and prototype-planning artifacts only.
+
+Round 2 recovery adds the V5 packet surface without changing that authority
+boundary: `visual-output-register.csv` now marks current geometry-related rows
+as `pending_measurement` or `concept_only`, and `cad/mcp-session-log.md`
+records that no MCP/CAD/measurement tool session was available or used.
 
 ## License
 

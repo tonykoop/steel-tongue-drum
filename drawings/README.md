@@ -1,6 +1,7 @@
 # Drawings
 
-This folder holds manufacturable drawings and exported views. The current SVG is a starter layout brief, not a final tuned DXF.
+This folder is reserved for future manufacturable drawings and exported views.
+The current SVG is a starter layout brief, not a final tuned DXF.
 
 Required future exports:
 
