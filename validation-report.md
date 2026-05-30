@@ -69,7 +69,11 @@ Private-prototype ready: yes.
 
 Public-review ready as a tuned instrument: no.
 
-Close-ready as a public-safe build packet: yes, provided the repo continues to describe all tuning values as predictions until the measurements above are captured.
+Issue #5 structure close-ready: yes, for the coupon-first CAM/CAD authority
+surface only.
+
+Public build-packet ready: no. The current packet remains an L2 V5 candidate
+with pending measurement authority, not a tuned or fabrication-ready release.
 
 CAM/CAD build-ready: no. The issue #5 coupon gate remains blocked until a real
 coupon row is measured and reviewed.
