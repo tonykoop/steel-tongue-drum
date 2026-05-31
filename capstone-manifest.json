@@ -39,7 +39,7 @@
     "photo-shotlist.md",
     "supplier-rfq.md",
     "visual-bom-brief.md",
-    "wolfram-starter.wl"
+    "steel-tongue-drum-starter.wl"
   ],
   "authority_files": [
     "steel-tongue-drum-design-table.xlsx",
@@ -97,7 +97,7 @@
   ],
   "notes": [
     "All artifact paths are repository-relative.",
-    "This manifest intentionally preserves the current Wolfram source path, wolfram-starter.wl; the inspected stash row used an older steel-tongue-drum-starter.wl name.",
+    "This manifest intentionally preserves the current Wolfram source path, steel-tongue-drum-starter.wl; the inspected stash row used an older steel-tongue-drum-starter.wl name.",
     "Issue #5 remains blocked on coupon evidence; this round adds the gate and evidence template without claiming complete V5, L3, measured, CAM-ready, or build-ready status."
   ]
 }

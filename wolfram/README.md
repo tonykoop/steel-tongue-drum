@@ -4,7 +4,7 @@ Wolfram-related notes and future notebooks live here.
 
 ## Current Source
 
-- `../wolfram-starter.wl` - starter source for tuning and geometry sweeps.
+- `../steel-tongue-drum-starter.wl` - starter source for tuning and geometry sweeps.
 
 ## Planned Follow-Ons
 
