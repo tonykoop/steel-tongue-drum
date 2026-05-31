@@ -16,7 +16,7 @@ Packet folder: `/mnt/c/Users/Tony/Documents/GitHub/steel-tongue-drum`
 | `validation.csv` | Target/measured values, tolerance, environment, result, and tuning/build action log. |
 | `supplier-rfq.md` | Supplier email/request-for-quote starter. |
 | `visual-bom-brief.md` | Art direction for an image-forward visual BOM. |
-| `wolfram-starter.wl` | Wolfram starter for physics, optimization, visualization, and validation. |
+| `steel-tongue-drum-starter.wl` | Wolfram starter for physics, optimization, visualization, and validation. |
 | `README.md` | Project artifact. |
 | `family-spec.csv` | Project artifact. |
 | `jig-decision.md` | Project artifact. |
@@ -379,7 +379,7 @@ Until real photos exist, use clean line drawings and explicit placeholders. Do n
 
 <div class="page-break"></div>
 
-## wolfram-starter.wl
+## steel-tongue-drum-starter.wl
 
 Wolfram starter for physics, optimization, visualization, and validation.
 
