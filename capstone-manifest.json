@@ -99,5 +99,23 @@
     "All artifact paths are repository-relative.",
     "This manifest intentionally preserves the current Wolfram source path, steel-tongue-drum-starter.wl; the inspected stash row used an older steel-tongue-drum-starter.wl name.",
     "Issue #5 remains blocked on coupon evidence; this round adds the gate and evidence template without claiming complete V5, L3, measured, CAM-ready, or build-ready status."
-  ]
+  ],
+  "engineering": {
+    "wolfram": [
+      {
+        "source_file": "idiophones/steel-tongue-drum/steel-tongue-drum-starter.wl",
+        "cloud_path": "Musical_Instruments/idiophones/steel-tongue-drum/steel-tongue-drum-starter.wl",
+        "cloud_url": "https://www.wolframcloud.com/obj/wrfcoin/Musical_Instruments/idiophones/steel-tongue-drum/steel-tongue-drum-starter.wl",
+        "permission": "Public-Execute",
+        "kind": "acoustics-starter"
+      },
+      {
+        "source_file": "idiophones/steel-tongue-drum/wolfram/steel-tongue-drum-wolfram-model.wl",
+        "cloud_path": "Musical_Instruments/idiophones/steel-tongue-drum/steel-tongue-drum-wolfram-model.wl",
+        "cloud_url": "https://www.wolframcloud.com/obj/wrfcoin/Musical_Instruments/idiophones/steel-tongue-drum/steel-tongue-drum-wolfram-model.wl",
+        "permission": "Public-Execute",
+        "kind": "geometry-model"
+      }
+    ]
+  }
 }
