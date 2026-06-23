@@ -48,7 +48,7 @@ targetTableFor[kSteel_, thick_] := KeyValueMap[
 ];
 
 (* Final interactive app: expose steel constant, thickness, and length-sweep range. *)
-Manipulate[
+steelTongueDrumExplorer = Manipulate[
   Module[
     {tbl, rows},
     tbl = targetTableFor[kSteel, thick];
