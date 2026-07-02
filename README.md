@@ -64,7 +64,8 @@ The important caveat: steel tongue drums are empirical instruments. The cantilev
 - `drawing-brief.md`, `drawings/` - drawing requirements and starter layout SVG.
 - `explorer.html` - issue #5 explorer surface for packet status, authority boundaries, and measurement gates.
 - `visual-output-register.csv` - visual authority register for the workbook, measurement template, and layout SVG.
-- `cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs, including the issue #5 coupon-first CAM/CAD authority gate and `cad/mcp-session-log.md` no-tool provenance stub.
+- `cad/`, `cnc/`, `jigs/` - SolidWorks/CAM/fixture briefs, the parametric `cad/steel-tongue-drum.scad` build-envelope + tongue-cut-layout master, the issue #5 coupon-first CAM/CAD authority gate, and `cad/mcp-session-log.md` provenance log.
+- `evolution/` - StudioPipeline evolution-pipeline Stage 0 intake (master manifest, design-intent, revisions).
 - `images/`, `data/`, `wolfram/` - starter folders for future photos, measured results, notebook notes, and the measurement capture plan.
 - `issue-comment-draft.md` - sprint-ready issue summary for `tonykoop/steel-tongue-drum#1`; do not post automatically.
 - `risks.md` - acoustic, structural, ergonomic, supply, and finish risks with tests.
